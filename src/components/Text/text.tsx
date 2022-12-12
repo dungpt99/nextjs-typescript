@@ -9,10 +9,15 @@ export interface ITextProps {
   children: string;
   warning?: boolean;
   fontBold?: boolean;
+  uppercase?: boolean;
 }
 
 export default function Text(props: ITextProps) {
-  const classes = cx("wrapper", { warning: props.warning, fontBold: props.fontBold });
+  const classes = cx("wrapper", {
+    warning: props.warning,
+    fontBold: props.fontBold,
+    uppercase: props.uppercase,
+  });
 
   return <div className={classes}>{props.children}</div>;
 }

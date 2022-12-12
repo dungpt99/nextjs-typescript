@@ -1,5 +1,6 @@
 .wrapper {
   border: none;
+  cursor: pointer;
 }
 
 .rounded {
@@ -8,4 +9,12 @@
 
 .md {
   padding: 10px 40px;
+}
+
+.backgroundColorNone {
+  background-color: var(--white);
+}
+
+.textDecoration {
+  text-decoration: underline;
 }
