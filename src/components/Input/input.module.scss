@@ -1,0 +1,12 @@
+.wrapper {
+  width: 100%;
+  &:focus {
+    outline: none;
+  }
+}
+
+.borderBottom {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
