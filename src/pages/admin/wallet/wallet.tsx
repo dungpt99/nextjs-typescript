@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames/bind";
 
 import styles from "./wallet.module.scss";
-import { DefaultLayout } from "../../layouts";
+import { DefaultLayout } from "../../../layouts";
 
 const cx = classNames.bind(styles);
 

@@ -2,11 +2,10 @@ import React from "react";
 import classNames from "classnames/bind";
 
 import styles from "./admin.module.scss";
-import { DefaultLayout } from "../../layouts";
-import TableComponent from "../../components/Table";
-import Text from "../../components/Text";
-import Input from "../../components/Input";
-import Button from "../../components/Button";
+import { DefaultLayout } from "../../../layouts";
+import Text from "../../../components/Text";
+import Input from "../../../components/Input";
+import Button from "../../../components/Button";
 
 const cx = classNames.bind(styles);
 
@@ -20,7 +19,6 @@ export default function Admin() {
         <Input type="text" />
         <Button size="small">Search</Button>
       </div>
-      <TableComponent />
     </div>
   );
 }

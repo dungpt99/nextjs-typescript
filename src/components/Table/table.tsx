@@ -2,19 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Table } from "antd";
 import type { ColumnsType, TablePaginationConfig } from "antd/es/table";
 import type { FilterValue, SorterResult } from "antd/es/table/interface";
-
-interface DataType {
-  name: {
-    first: string;
-    last: string;
-  };
-  gender: string;
-  email: string;
-  login: {
-    uuid: string;
-  };
-}
-
+import { TenantDataType } from "../../pages/admin/tenant/tenant.model";
 interface TableParams {
   pagination?: TablePaginationConfig;
   sortField?: string;
@@ -22,37 +10,14 @@ interface TableParams {
   filters?: Record<string, FilterValue>;
 }
 
-const columns: ColumnsType<DataType> = [
-  {
-    title: "Name",
-    dataIndex: "name",
-    sorter: true,
-    render: (name) => `${name.first} ${name.last}`,
-    width: "20%",
-  },
-  {
-    title: "Gender",
-    dataIndex: "gender",
-    filters: [
-      { text: "Male", value: "male" },
-      { text: "Female", value: "female" },
-    ],
-    width: "20%",
-  },
-  {
-    title: "Email",
-    dataIndex: "email",
-  },
-];
+type TablePaginationPosition = "bottomCenter";
 
-const getRandomuserParams = (params: TableParams) => ({
-  results: params.pagination?.pageSize,
-  page: params.pagination?.current,
-  ...params,
-});
+export interface ITableComponentProps {
+  columns: ColumnsType<TenantDataType>;
+  data: TenantDataType[];
+}
 
-const App: React.FC = () => {
-  const [data, setData] = useState();
+export default function TableComponent(props: ITableComponentProps) {
   const [loading, setLoading] = useState(false);
   const [tableParams, setTableParams] = useState<TableParams>({
     pagination: {
@@ -61,34 +26,10 @@ const App: React.FC = () => {
     },
   });
 
-  // const fetchData = () => {
-  //   setLoading(true);
-  //   fetch(`https://randomuser.me/api?${qs.stringify(getRandomuserParams(tableParams))}`)
-  //     .then((res) => res.json())
-  //     .then(({ results }) => {
-  //       setData(results);
-  //       setLoading(false);
-  //       setTableParams({
-  //         ...tableParams,
-  //         pagination: {
-  //           ...tableParams.pagination,
-  //           total: 200,
-  //           // 200 is mock data, you should read it from server
-  //           // total: data.totalCount,
-  //         },
-  //       });
-  //     });
-  // };
-
-  // useEffect(() => {
-  //   fetchData();
-  //   console.log(data);
-  // }, [JSON.stringify(tableParams)]);
-
   const handleTableChange = (
     pagination: TablePaginationConfig,
     filters: Record<string, FilterValue>,
-    sorter: SorterResult<DataType>
+    sorter: SorterResult<TenantDataType>
   ) => {
     setTableParams({
       pagination,
@@ -99,14 +40,14 @@ const App: React.FC = () => {
 
   return (
     <Table
-      columns={columns}
-      rowKey={(record) => record.login.uuid}
-      dataSource={data}
-      pagination={tableParams.pagination}
+      columns={props.columns}
+      dataSource={props.data}
+      pagination={{
+        ...tableParams.pagination,
+        position: ["bottomCenter" as TablePaginationPosition],
+      }}
       loading={loading}
       onChange={handleTableChange}
     />
   );
-};
-
-export default App;
+}
