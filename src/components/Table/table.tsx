@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Table } from "antd";
 import type { ColumnsType, TablePaginationConfig } from "antd/es/table";
 import type { FilterValue, SorterResult } from "antd/es/table/interface";
@@ -41,6 +41,7 @@ export default function TableComponent(props: ITableComponentProps) {
   return (
     <Table
       columns={props.columns}
+      rowKey={(record) => record.tenantId}
       dataSource={props.data}
       pagination={{
         ...tableParams.pagination,

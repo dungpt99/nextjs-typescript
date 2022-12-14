@@ -11,6 +11,7 @@ export interface IButtonProps {
   size: string;
   backgroundColorNone?: boolean;
   textDecoration?: boolean;
+  handleOnClick?: any;
 }
 
 export default function Button(props: IButtonProps) {
@@ -20,5 +21,9 @@ export default function Button(props: IButtonProps) {
     backgroundColorNone: props.backgroundColorNone,
     textDecoration: props.textDecoration,
   });
-  return <button className={classes}>{props.children}</button>;
+  return (
+    <button className={classes} onClick={props.handleOnClick}>
+      {props.children}
+    </button>
+  );
 }

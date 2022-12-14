@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+import { login } from "../../../services/user";
 
 export interface initialState {}
 
@@ -10,12 +10,19 @@ const initialState: initialState = {
   loginError: false,
   account: {} as any,
   errorMessage: null as unknown as string,
-  sessionHasBeenFetched: false,
 };
 
 interface IAuthParams {
   privateKey: string;
 }
+
+export const authenticate = createAsyncThunk(
+  "authentication/login",
+  async (userId: string, thunkAPI) => {
+    const response = await login(userId);
+    return response;
+  }
+);
 
 export const authenticationSlice = createSlice({
   name: "authentication",
@@ -27,6 +34,19 @@ export const authenticationSlice = createSlice({
         showModalLogin: true,
       };
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(authenticate.fulfilled, (state, action) => ({
+        ...initialState,
+        loginError: false,
+        loginSuccess: true,
+        isAuthenticated: true,
+      }))
+      .addCase(authenticate.rejected, (state, action) => ({
+        ...initialState,
+        loginError: true,
+      }));
   },
 });
 
