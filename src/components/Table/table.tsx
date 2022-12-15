@@ -3,7 +3,7 @@ import { Table } from "antd";
 import type { ColumnsType, TablePaginationConfig } from "antd/es/table";
 import type { FilterValue, SorterResult } from "antd/es/table/interface";
 import { TenantDataType } from "../../pages/admin/tenant/tenant.model";
-interface TableParams {
+export interface TableParams {
   pagination?: TablePaginationConfig;
   sortField?: string;
   sortOrder?: string;
@@ -15,40 +15,24 @@ type TablePaginationPosition = "bottomCenter";
 export interface ITableComponentProps {
   columns: ColumnsType<TenantDataType>;
   data: TenantDataType[];
+  tableParams: TableParams;
+  handleTableChange: any;
+  loading: boolean;
 }
 
 export default function TableComponent(props: ITableComponentProps) {
-  const [loading, setLoading] = useState(false);
-  const [tableParams, setTableParams] = useState<TableParams>({
-    pagination: {
-      current: 1,
-      pageSize: 10,
-    },
-  });
-
-  const handleTableChange = (
-    pagination: TablePaginationConfig,
-    filters: Record<string, FilterValue>,
-    sorter: SorterResult<TenantDataType>
-  ) => {
-    setTableParams({
-      pagination,
-      filters,
-      ...sorter,
-    });
-  };
-
   return (
     <Table
       columns={props.columns}
-      rowKey={(record) => record.tenantId}
+      rowKey={(record) => record.id}
       dataSource={props.data}
       pagination={{
-        ...tableParams.pagination,
+        ...props.tableParams.pagination,
+        showSizeChanger: true,
         position: ["bottomCenter" as TablePaginationPosition],
       }}
-      loading={loading}
-      onChange={handleTableChange}
+      loading={props.loading}
+      onChange={props.handleTableChange}
     />
   );
 }

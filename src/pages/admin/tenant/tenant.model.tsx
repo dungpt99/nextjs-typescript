@@ -7,26 +7,27 @@ import classNames from "classnames/bind";
 const cx = classNames.bind(styles);
 
 export interface TenantDataType {
+  id: string;
   tenantId: string;
   tenantName: string;
   numberOfPeer: string;
   numberOfUser: string;
   tenantBalance: string;
   totalMount: string;
-  tenantStatus: string;
+  tenantStatus: number;
   action: string;
 }
 
 export const columnsTenant: ColumnsType<TenantDataType> = [
   {
     title: "TenantId",
-    dataIndex: "tenantId",
+    dataIndex: "tenant_id",
     key: "tenantId",
     sorter: (a, b) => Number(a.tenantId) - Number(b.tenantId),
   },
   {
     title: "TenantName",
-    dataIndex: "tenantName",
+    dataIndex: "tenant_name",
     key: "tenantName",
     sorter: true,
   },
@@ -56,15 +57,16 @@ export const columnsTenant: ColumnsType<TenantDataType> = [
   },
   {
     title: "Tenant Status",
-    dataIndex: "tenantStatus",
+    dataIndex: "status",
     key: "tenantStatus",
     sorter: true,
+    render: (text) => <span>{text === "1" ? "enable" : "disable"}</span>,
   },
   {
     title: "Action",
     dataIndex: "action",
     key: "action",
-    render: (_, record) => (
+    render: () => (
       <div className={cx("table__action")}>
         <div className={cx("table__icon")}>
           <FontAwesomeIcon icon={faPen} />
