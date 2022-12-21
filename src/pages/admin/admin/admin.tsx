@@ -8,17 +8,17 @@ import Text from "../../../components/Text";
 import Input from "../../../components/Input";
 import Button from "../../../components/Button";
 import { useAppSelector } from "../../../config/store";
-import Toast from "../../../components/Toast";
+import toastNotify from "../../../components/Toast";
 import { TypeToast } from "../../../common/enum";
 
 const cx = classNames.bind(styles);
 
 export default function Admin() {
   const loginSuccess = useAppSelector((state) => state.authentication.loginSuccess);
-  useEffect(() => {
-    Toast(TypeToast.SUCCESS, "Login success");
-  }, [loginSuccess]);
 
+  if (loginSuccess) {
+    toastNotify(TypeToast.SUCCESS, "Login success");
+  }
   return (
     <div className={cx("wrapper")}>
       <div className={cx("title")}>

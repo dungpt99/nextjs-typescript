@@ -3,14 +3,13 @@ import axios from "axios";
 class Axios {
   contentType: string;
   api: any;
-  constructor(baseUrl = process.env.REACT_APP_API_ROOT, contentType = "application/json") {
+  constructor(baseUrl: string, contentType = "application/json") {
     this.contentType = contentType;
     this.api = axios.create({
       baseURL: baseUrl,
     });
   }
 
-  // Build headers request
   headers() {
     let permission = "";
     // let route = window.route;
@@ -38,10 +37,8 @@ class Axios {
   // }
 
   // Method get
-  get(path: string, params: string) {
-    return this.api.request({
-      method: "GET",
-      url: path,
+  get(path: string, params: object) {
+    return this.api.get(path, {
       params: params,
       ...this.headers(),
     });
@@ -77,5 +74,9 @@ class Axios {
     });
   }
 }
-export const request = new Axios(process.env.HOST);
-export const formDataRequest = new Axios(process.env.HOST, process.env.TYPE);
+
+export const request = new Axios(process.env.NEXT_PUBLIC_HOST as string);
+export const formDataRequest = new Axios(
+  process.env.NEXT_PUBLIC_HOST as string,
+  process.env.NEXT_PUBLIC_TYPE
+);

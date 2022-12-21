@@ -31,14 +31,13 @@ export const authenticationSlice = createSlice({
     logoutSession() {
       return {
         ...initialState,
-        showModalLogin: true,
       };
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(authenticate.fulfilled, (state, action) => ({
-        ...initialState,
+      .addCase(authenticate.fulfilled, (state) => ({
+        ...state,
         loginError: false,
         loginSuccess: true,
         isAuthenticated: true,
@@ -46,6 +45,7 @@ export const authenticationSlice = createSlice({
       .addCase(authenticate.rejected, (state, action) => ({
         ...initialState,
         loginError: true,
+        errorMessage: action.error.message,
       }));
   },
 });
