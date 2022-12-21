@@ -1,18 +1,14 @@
 .wrapper {
   border: none;
   cursor: pointer;
+
+  &:disabled {
+    background-color: var(--disabled);
+  }
 }
 
 .rounded {
   border-radius: 999px;
-}
-
-.md {
-  padding: 10px 40px;
-}
-
-.sm {
-  padding: 5px 30px;
 }
 
 .backgroundColorNone {

@@ -8,22 +8,32 @@ const cx = classNames.bind(styles);
 export interface IButtonProps {
   children: string;
   rounded?: boolean;
-  size: string;
   backgroundColorNone?: boolean;
   textDecoration?: boolean;
   handleOnClick?: any;
+  classNames?: any;
+  disabled?: boolean;
 }
 
 export default function Button(props: IButtonProps) {
+  const {
+    children,
+    rounded,
+    backgroundColorNone,
+    textDecoration,
+    handleOnClick,
+    classNames,
+    ...attribute
+  } = props;
   const classes = cx("wrapper", {
-    rounded: props.rounded,
-    [props.size]: props.size,
-    backgroundColorNone: props.backgroundColorNone,
-    textDecoration: props.textDecoration,
+    rounded: rounded,
+    backgroundColorNone: backgroundColorNone,
+    textDecoration: textDecoration,
+    [classNames]: classNames,
   });
   return (
-    <button className={classes} onClick={props.handleOnClick}>
-      {props.children}
+    <button className={classes} onClick={handleOnClick} {...attribute}>
+      {children}
     </button>
   );
 }

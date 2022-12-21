@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ColumnsType } from "antd/es/table";
 import styles from "./tenant.module.scss";
 import classNames from "classnames/bind";
-import { useAppSelector } from "../../../config/store";
+import { useAppSelector } from "../../../../config/store";
 
 const cx = classNames.bind(styles);
 export interface TenantDataType {

@@ -16,14 +16,28 @@
   }
 }
 
-.table__action {
+.title__action {
   display: flex;
   justify-content: center;
 }
 
-.table__icon {
+.title__icon {
   cursor: pointer;
-  + .table__icon {
+  + .title__icon {
     margin-left: 10px;
   }
+}
+
+.peer {
+  margin-top: 10px;
+}
+
+.wallet {
+  margin-top: 10px;
+}
+
+.wallet__box {
+  border: 1px solid #888;
+  border-radius: 5px;
+  padding: 20px 10px;
 }
