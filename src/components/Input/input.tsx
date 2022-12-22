@@ -3,7 +3,7 @@ import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import styles from "./input.module.scss";
-import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
+import { faCircleExclamation, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const cx = classNames.bind(styles);
 
@@ -16,13 +16,14 @@ export interface IInputProps {
   display?: string | any;
   placeholder?: string;
   error?: boolean;
+  search?: boolean;
   onChangeValue?: any;
   classlabel?: string | any;
   classinput?: string | any;
 }
 
 export default function Input(props: IInputProps) {
-  const { borderBottom, label, display, onChangeValue, error, ...attribute } = props;
+  const { borderBottom, label, display, onChangeValue, error, search, ...attribute } = props;
   const classInput = cx("input", { borderBottom, [props.classinput]: props.classinput, error });
   const classLabel = cx("label", { [props.classlabel]: props.classlabel });
 
@@ -32,6 +33,7 @@ export default function Input(props: IInputProps) {
       <div className={cx("wrapper__input")}>
         <input className={classInput} {...attribute} onChange={onChangeValue} />
         {error && <FontAwesomeIcon icon={faCircleExclamation} className={cx("error__icon")} />}
+        {search && <FontAwesomeIcon icon={faSearch} className={cx("search__icon")} />}
       </div>
     </div>
   );

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import classNames from "classnames/bind";
-import { FilterValue, SorterResult } from "antd/es/table/interface";
+import { ColumnsType, FilterValue, SorterResult } from "antd/es/table/interface";
 import { TablePaginationConfig } from "antd";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./tenant.module.scss";
 import { DefaultLayout } from "../../../layouts";
@@ -9,13 +11,74 @@ import TableComponent from "../../../components/Table";
 import Text from "../../../components/Text";
 import Input from "../../../components/Input";
 import Button from "../../../components/Button";
-import { columnsTenant, TenantDataType } from "./tenant.model";
+import { TenantDataType } from "../../../common/interface/tenant.model";
 import { getTenant } from "../../../services/tenant";
 import toastNotify from "../../../components/Toast";
 import { TypeToast } from "../../../common/enum";
 import { TableParams } from "../../../components/Table/table";
 
 const cx = classNames.bind(styles);
+
+const columnsTenant: ColumnsType<TenantDataType> = [
+  {
+    title: "TenantId",
+    dataIndex: "tenant_id",
+    key: "tenantId",
+    sorter: (a: any, b: any) => Number(a.tenantId) - Number(b.tenantId),
+  },
+  {
+    title: "TenantName",
+    dataIndex: "tenant_name",
+    key: "tenantName",
+    sorter: true,
+  },
+  {
+    title: "Number of peer",
+    dataIndex: "numberOfPeer",
+    key: "numberOfPeer",
+    sorter: true,
+  },
+  {
+    title: "Number of user",
+    dataIndex: "numberOfUser",
+    key: "numberOfUser",
+    sorter: true,
+  },
+  {
+    title: "Tenant balance",
+    dataIndex: "tenantBalance",
+    key: "tenantBalance",
+    sorter: true,
+  },
+  {
+    title: "Total amount in user's wallet",
+    dataIndex: "totalMount",
+    key: "totalMount",
+    sorter: true,
+  },
+  {
+    title: "Tenant Status",
+    dataIndex: "status",
+    key: "tenantStatus",
+    sorter: true,
+    render: (text: string) => <span>{text === "1" ? "enable" : "disable"}</span>,
+  },
+  {
+    title: "Action",
+    dataIndex: "action",
+    key: "action",
+    render: () => (
+      <div className={cx("table__action")}>
+        <div className={cx("table__icon")}>
+          <FontAwesomeIcon icon={faPen} />
+        </div>
+        <div className={cx("table__icon")}>
+          <FontAwesomeIcon icon={faTrash} />
+        </div>
+      </div>
+    ),
+  },
+];
 
 export default function Tenant() {
   const [data, setData] = useState([]);
@@ -89,7 +152,7 @@ export default function Tenant() {
           <Input type="text" />
         </div>
         <div className={cx("search__button")}>
-          <Button size="sm">Search</Button>
+          <Button>Search</Button>
         </div>
       </div>
       <div className={cx("table")}>

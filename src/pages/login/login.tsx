@@ -98,7 +98,7 @@ export default function Login(props: ILoginProps) {
           <Button
             handleOnClick={handleLogin}
             disabled={disabled}
-            classNames={cx("content__button--element")}
+            className={cx("content__button--element")}
           >
             Authorize
           </Button>

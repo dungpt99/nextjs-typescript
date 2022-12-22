@@ -1,6 +1,6 @@
 import { request } from "../axios/axios";
 
-export const login = async (headers: object) => {
-  const data = await request.post("/auth/signin", {}, headers);
+export const login = async () => {
+  const data = await request.post("/auth/signin", {});
   return data;
 };
