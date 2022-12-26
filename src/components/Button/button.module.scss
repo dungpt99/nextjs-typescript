@@ -18,3 +18,26 @@
 .textDecoration {
   text-decoration: underline;
 }
+
+.icon {
+  margin-right: 5px;
+}
+
+.btnAdd {
+  padding: 8px;
+  width: 96px;
+  height: 44px;
+  background-color: var(--btn-add);
+  border-radius: 8px;
+  color: var(--white);
+}
+
+.btnDelete {
+  padding: 8px;
+  width: 96px;
+  height: 44px;
+  border-radius: 8px;
+  background-color: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+}

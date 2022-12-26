@@ -1,16 +1,24 @@
 .wrapper {
-  padding: 10px 20px;
   display: flex;
-  border: 1px solid grey;
   align-items: center;
+  background-color: var(--blue);
+  color: var(--white);
+  height: 72px;
 }
 
 .brand {
-  width: 50px;
-  height: 40px;
-  overflow: hidden;
-  border-radius: 10px;
-  margin: 0 60px 0 40px;
+  width: 186px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  margin: 0 32px;
+  border-right: 1px solid var(--border-color);
+
+  &__text {
+    font-weight: 500;
+    font-size: 18px;
+    margin-right: 8px;
+  }
 }
 
 .content {
@@ -19,16 +27,24 @@
   justify-content: space-between;
   align-items: center;
 
+  &__title {
+    font-weight: 500;
+    font-size: 18px;
+  }
+
   &__user {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-weight: 400;
+    font-size: 18px;
 
     .user__info {
       display: flex;
       align-items: center;
-      border-right: 1px solid gray;
-      padding: 0 20px;
+      border-right: 1px solid var(--border-color);
+      height: 54px;
+      width: 90px;
 
       .info__img {
         display: flex;
@@ -42,7 +58,12 @@
     }
 
     .user__signOut {
-      margin-left: 20px;
+      margin: 0 32px;
+
+      &--button {
+        background-color: var(--blue);
+        color: inherit;
+      }
     }
   }
 }

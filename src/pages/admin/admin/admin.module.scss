@@ -1,12 +1,36 @@
 .wrapper {
 }
 
+.action {
+  display: flex;
+  justify-content: space-between;
+}
+
 .title {
   font-size: 24;
 }
 
 .search {
-  display: flex;
-  width: 25%;
-  justify-content: flex-end;
+  width: 553px;
+}
+
+.button {
+  &__delete {
+    margin-left: 10px;
+  }
+}
+
+.table {
+  margin-top: 20px;
+  &__action {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__icon {
+    cursor: pointer;
+    + .table__icon {
+      margin-left: 10px;
+    }
+  }
 }

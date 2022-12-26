@@ -21,12 +21,13 @@ interface IAuthParams {
 export const authenticate = createAsyncThunk("authentication/login", async (privateKey: string) => {
   const requestTime = new Date().getTime();
   const signingResult = CryptoUtil.signing(privateKey, requestTime.toString());
-  const { headers } = request.headers(
-    signingResult.publicKey.toString(),
-    requestTime.toString(),
-    signingResult.signature
-  );
-  const response = await login(headers);
+  const headers = {
+    "User-Public-Key": signingResult.publicKey.toString(),
+    "User-Request-Time": requestTime.toString(),
+    "User-Signature": signingResult.signature,
+  };
+  request.setHeaders(headers);
+  const response = await login();
   localStorage.setItem("headers", JSON.stringify(headers));
   return response;
 });

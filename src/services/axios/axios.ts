@@ -3,34 +3,20 @@ import axios from "axios";
 class Axios {
   contentType: string;
   api: any;
+  headers: object;
   constructor(baseUrl: string, contentType = "application/json") {
     this.contentType = contentType;
     this.api = axios.create({
       baseURL: baseUrl,
     });
+    this.headers = {
+      "Content-Type": this.contentType,
+      platform: "web",
+    };
   }
 
-  headers(address?: string, requestTime?: string, signature?: string) {
-    let permission = "";
-    // let route = window.route;
-    // if (route && route.meta) {
-    //   const { permissions } = route.meta;
-    //   if (permissions && permissions.length > 0) {
-    //     permission = permissions[0];
-    //   }
-    // }
-    // let token = this.getCookie("access_token");
-    return {
-      headers: {
-        "Content-Type": this.contentType,
-        Authorization: "",
-        platform: "web",
-        permission: permission,
-        "User-Public-Key": address ? address : "",
-        "User-Request-Time": requestTime ? requestTime : "",
-        "User-Signature": signature ? signature : "",
-      },
-    };
+  setHeaders(headers: object) {
+    this.headers = { ...this.headers, ...headers };
   }
 
   // getCookie(name: string) {
@@ -41,21 +27,22 @@ class Axios {
 
   // Method get
   get(path: string, params: object) {
+    console.log(this.headers);
     return this.api({
       method: "get",
       url: path,
       params: params,
-      ...this.headers(),
+      headers: this.headers,
     });
   }
 
   // Method post
-  post(path: string, payload?: object, headers?: object) {
+  post(path: string, payload?: object) {
     return this.api({
       method: "post",
       url: path,
-      headers,
       data: payload,
+      headers: this.headers,
     });
   }
 
@@ -65,7 +52,7 @@ class Axios {
       method: "PUT",
       url: path,
       data: payload,
-      ...this.headers(),
+      headers: this.headers,
     });
   }
 
@@ -75,7 +62,7 @@ class Axios {
       method: "DELETE",
       url: path,
       data: payload,
-      ...this.headers(),
+      headers: this.headers,
     });
   }
 }

@@ -13,14 +13,14 @@ const cx = classNames.bind(styles);
 
 const tab = [
   { key: "Tenant Management", icon: faLayerGroup, link: "tenant" },
-  { key: "User's Wallet Management", icon: faWallet, link: "wallet" },
+  { key: "User Management", icon: faWallet, link: "wallet" },
   { key: "Admin Management", icon: faUser, link: "admin" },
 ];
 
 export default function Sidebar() {
   const router = useRouter();
 
-  const handleClick = (e) => {
+  const handleClick = (e: any) => {
     console.log(router);
   };
   return (

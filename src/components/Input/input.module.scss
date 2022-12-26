@@ -5,6 +5,7 @@
 
   &__input {
     position: relative;
+    flex-grow: 1;
   }
 }
 
@@ -13,6 +14,7 @@
 }
 .input {
   width: 100%;
+  height: 100%;
   border: 1px solid var(--input-color);
   padding: 10px;
   border-radius: 8px;
@@ -28,6 +30,13 @@
   top: 50%;
   transform: translateY(-50%);
   color: var(--error);
+}
+.search__icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--icon-search);
 }
 
 .borderBottom {

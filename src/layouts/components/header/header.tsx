@@ -6,15 +6,12 @@ import styles from "./header.module.scss";
 import Image from "next/image";
 import Text from "../../../components/Text";
 import Button from "../../../components/Button";
+import Logo from "../../../assets/images/logo.svg";
 import { useRouter } from "next/router";
 import { useAppDispatch } from "../../../config/store";
 import { logoutSession } from "../../../config/reducers/authentication/authentication";
 
 const cx = classNames.bind(styles);
-
-const myLoader = ({ src, width, quality }: any) => {
-  return `https://via.placeholder.com/${src}}`;
-};
 
 export default function Header() {
   const router = useRouter();
@@ -39,23 +36,23 @@ export default function Header() {
   return (
     <div className={cx("wrapper")}>
       <div className={cx("brand")}>
-        <Image loader={myLoader} src="150" alt="Picture of the brand" width={100} height={100} />
+        <Text className={cx("brand__text")}>YOKOGAWA</Text>
+        <Image src={Logo} alt="Logo" width={12} height={12} />
       </div>
       <div className={cx("content")}>
         <div className={cx("content__title")}>
-          <Text fontBold uppercase>
-            Blockchain management
-          </Text>
+          <Text uppercase>Admin management</Text>
         </div>
         <div className={cx("content__user")}>
           <div className={cx("user__info")}>
-            <div className={cx("info__img")}>
-              <Image loader={myLoader} src="150" alt="Picture of the user" width={50} height={50} />
-            </div>
             <Text>AD0001</Text>
           </div>
           <div className={cx("user__signOut")}>
-            <Button backgroundColorNone textDecoration handleOnClick={showModal}>
+            <Button
+              textDecoration
+              handleOnClick={showModal}
+              className={cx("user__signOut--button")}
+            >
               Sign out
             </Button>
             <Modal

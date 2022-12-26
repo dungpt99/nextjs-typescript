@@ -101,7 +101,6 @@ export default function TenantDetail() {
                     <Input
                       type={element.type}
                       label={element.label}
-                      size={"md"}
                       value={element.value}
                       onChangeValue={onChange}
                       display={"row"}
