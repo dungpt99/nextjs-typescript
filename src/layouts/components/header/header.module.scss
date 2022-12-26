@@ -46,3 +46,16 @@
     }
   }
 }
+
+.modal__title {
+  font-size: 20px;
+}
+
+.modal__content {
+  font-size: 16px;
+}
+
+.modal__okButton,
+.modal__cancelButton {
+  border: 1px solid #666;
+}

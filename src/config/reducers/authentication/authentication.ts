@@ -1,4 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { CryptoUtil } from "../../../common/crypto/crypto.util";
+import { request } from "../../../services/axios/axios";
 import { login } from "../../../services/user";
 
 export interface initialState {}
@@ -16,13 +18,18 @@ interface IAuthParams {
   privateKey: string;
 }
 
-export const authenticate = createAsyncThunk(
-  "authentication/login",
-  async (userId: string, thunkAPI) => {
-    const response = await login(userId);
-    return response;
-  }
-);
+export const authenticate = createAsyncThunk("authentication/login", async (privateKey: string) => {
+  const requestTime = new Date().getTime();
+  const signingResult = CryptoUtil.signing(privateKey, requestTime.toString());
+  const { headers } = request.headers(
+    signingResult.publicKey.toString(),
+    requestTime.toString(),
+    signingResult.signature
+  );
+  const response = await login(headers);
+  localStorage.setItem("headers", JSON.stringify(headers));
+  return response;
+});
 
 export const authenticationSlice = createSlice({
   name: "authentication",
@@ -31,17 +38,23 @@ export const authenticationSlice = createSlice({
     logoutSession() {
       return {
         ...initialState,
+        isAuthenticated: false,
+        loginSuccess: false,
+        loginError: false,
       };
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(authenticate.fulfilled, (state) => ({
-        ...state,
-        loginError: false,
-        loginSuccess: true,
-        isAuthenticated: true,
-      }))
+      .addCase(authenticate.fulfilled, (state, action) => {
+        return {
+          ...state,
+          loginError: false,
+          loginSuccess: true,
+          isAuthenticated: true,
+          account: action.payload.data.data,
+        };
+      })
       .addCase(authenticate.rejected, (state, action) => ({
         ...initialState,
         loginError: true,

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import classNames from "classnames/bind";
-import { ToastContainer } from "react-toastify";
 
 import styles from "./admin.module.scss";
 import { DefaultLayout } from "../../../layouts";
@@ -8,16 +7,16 @@ import Text from "../../../components/Text";
 import Input from "../../../components/Input";
 import Button from "../../../components/Button";
 import { useAppSelector } from "../../../config/store";
-import toastNotify from "../../../components/Toast";
-import { TypeToast } from "../../../common/enum";
+import { useRouter } from "next/router";
+import { request } from "../../../services/axios/axios";
 
 const cx = classNames.bind(styles);
 
 export default function Admin() {
-  const loginSuccess = useAppSelector((state) => state.authentication.loginSuccess);
-
-  if (loginSuccess) {
-    toastNotify(TypeToast.SUCCESS, "Login success");
+  const router = useRouter();
+  const isAuthenticated = useAppSelector((state) => state.authentication.isAuthenticated);
+  if (!isAuthenticated && typeof window !== "undefined") {
+    router.push("/login");
   }
   return (
     <div className={cx("wrapper")}>
@@ -26,9 +25,8 @@ export default function Admin() {
       </div>
       <div className={cx("search")}>
         <Input type="text" />
-        <Button size="small">Search</Button>
+        <Button>Search</Button>
       </div>
-      <ToastContainer />
     </div>
   );
 }

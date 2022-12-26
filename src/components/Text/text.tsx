@@ -10,6 +10,7 @@ export interface ITextProps {
   warning?: boolean;
   fontBold?: boolean;
   uppercase?: boolean;
+  className?: any;
 }
 
 export default function Text(props: ITextProps) {
@@ -17,6 +18,7 @@ export default function Text(props: ITextProps) {
     warning: props.warning,
     fontBold: props.fontBold,
     uppercase: props.uppercase,
+    [props.className]: props.className,
   });
 
   return <div className={classes}>{props.children}</div>;

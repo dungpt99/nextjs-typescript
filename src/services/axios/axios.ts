@@ -10,7 +10,7 @@ class Axios {
     });
   }
 
-  headers() {
+  headers(address?: string, requestTime?: string, signature?: string) {
     let permission = "";
     // let route = window.route;
     // if (route && route.meta) {
@@ -26,6 +26,9 @@ class Axios {
         Authorization: "",
         platform: "web",
         permission: permission,
+        "User-Public-Key": address ? address : "",
+        "User-Request-Time": requestTime ? requestTime : "",
+        "User-Signature": signature ? signature : "",
       },
     };
   }
@@ -38,19 +41,21 @@ class Axios {
 
   // Method get
   get(path: string, params: object) {
-    return this.api.get(path, {
+    return this.api({
+      method: "get",
+      url: path,
       params: params,
       ...this.headers(),
     });
   }
 
   // Method post
-  post(path: string, payload: string) {
-    return this.api.request({
-      method: "POST",
+  post(path: string, payload?: object, headers?: object) {
+    return this.api({
+      method: "post",
       url: path,
+      headers,
       data: payload,
-      ...this.headers(),
     });
   }
 

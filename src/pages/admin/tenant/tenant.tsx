@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import classNames from "classnames/bind";
+import { FilterValue, SorterResult } from "antd/es/table/interface";
+import { TablePaginationConfig } from "antd";
 
 import styles from "./tenant.module.scss";
 import { DefaultLayout } from "../../../layouts";
@@ -11,10 +13,7 @@ import { columnsTenant, TenantDataType } from "./tenant.model";
 import { getTenant } from "../../../services/tenant";
 import toastNotify from "../../../components/Toast";
 import { TypeToast } from "../../../common/enum";
-import { ToastContainer } from "react-toastify";
 import { TableParams } from "../../../components/Table/table";
-import { TablePaginationConfig } from "antd";
-import { FilterValue, SorterResult } from "antd/es/table/interface";
 
 const cx = classNames.bind(styles);
 
@@ -45,8 +44,8 @@ export default function Tenant() {
             total: data.pagination.totalCount,
           },
         });
-      } catch (error: any) {
-        toastNotify(TypeToast.ERROR, error.message);
+      } catch (error) {
+        toastNotify(TypeToast.ERROR, (error as Error).message);
       }
     }
     fetchData();
@@ -54,8 +53,8 @@ export default function Tenant() {
 
   const handleTableChange = async (
     pagination: TablePaginationConfig,
-    filters: Record<string, FilterValue>,
-    sorter: SorterResult<TenantDataType>
+    filters: Record<string, FilterValue | null>,
+    sorter: SorterResult<TenantDataType> | SorterResult<TenantDataType>[]
   ) => {
     try {
       setLoading(true);
@@ -75,8 +74,8 @@ export default function Tenant() {
         filters,
         ...sorter,
       });
-    } catch (error: any) {
-      toastNotify(TypeToast.ERROR, error.message);
+    } catch (error) {
+      toastNotify(TypeToast.ERROR, (error as Error).message);
     }
   };
 
@@ -93,14 +92,15 @@ export default function Tenant() {
           <Button size="sm">Search</Button>
         </div>
       </div>
-      <TableComponent
-        columns={columnsTenant}
-        data={data}
-        tableParams={tableParams}
-        handleTableChange={handleTableChange}
-        loading={loading}
-      />
-      <ToastContainer />
+      <div className={cx("table")}>
+        <TableComponent
+          columns={columnsTenant}
+          data={data}
+          tableParams={tableParams}
+          handleTableChange={handleTableChange}
+          loading={loading}
+        />
+      </div>
     </div>
   );
 }

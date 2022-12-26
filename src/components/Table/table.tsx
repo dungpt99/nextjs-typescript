@@ -7,16 +7,19 @@ export interface TableParams {
   pagination?: TablePaginationConfig;
   sortField?: string;
   sortOrder?: string;
-  filters?: Record<string, FilterValue>;
+  filters?: Record<string, FilterValue | null>;
 }
 
 type TablePaginationPosition = "bottomCenter";
-
 export interface ITableComponentProps {
   columns: ColumnsType<TenantDataType>;
   data: TenantDataType[];
   tableParams: TableParams;
-  handleTableChange: any;
+  handleTableChange: (
+    pagination: TablePaginationConfig,
+    filters: Record<string, FilterValue | null>,
+    sorter: SorterResult<TenantDataType> | SorterResult<TenantDataType>[]
+  ) => void;
   loading: boolean;
 }
 
