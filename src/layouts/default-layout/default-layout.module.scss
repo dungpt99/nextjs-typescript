@@ -1,0 +1,14 @@
+.wrapper {
+  background-color: var(--background-color);
+}
+
+.body {
+  display: flex;
+}
+
+.content {
+  margin: 24px 32px;
+  padding: 16px;
+  flex-grow: 1;
+  background-color: var(--white);
+}

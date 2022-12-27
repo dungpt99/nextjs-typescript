@@ -1,0 +1,43 @@
+.wrapper {
+}
+
+.title {
+  font-size: 24;
+  padding: 20px 0;
+}
+
+.search {
+  padding: 20px 0;
+  display: flex;
+  justify-content: flex-end;
+
+  &__text {
+    margin-right: 20px;
+  }
+}
+
+.title__action {
+  display: flex;
+  justify-content: center;
+}
+
+.title__icon {
+  cursor: pointer;
+  + .title__icon {
+    margin-left: 10px;
+  }
+}
+
+.peer {
+  margin-top: 10px;
+}
+
+.wallet {
+  margin-top: 10px;
+}
+
+.wallet__box {
+  border: 1px solid #888;
+  border-radius: 5px;
+  padding: 20px 10px;
+}

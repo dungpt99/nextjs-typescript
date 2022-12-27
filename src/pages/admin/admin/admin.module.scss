@@ -1,0 +1,71 @@
+.wrapper {
+}
+
+.action {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 24;
+}
+
+.search {
+  width: 553px;
+}
+
+.button {
+  &__delete {
+    margin-left: 10px;
+  }
+}
+
+.table {
+  margin-top: 20px;
+  &__icon {
+    color: var(--primary);
+    margin: 0 auto;
+    width: 20px;
+    + .table__icon {
+      margin-left: 10px;
+    }
+  }
+}
+
+.modal__body {
+}
+
+.modal__label {
+  width: 250px;
+}
+
+.modal__input {
+  border: none;
+  background-color: var(--white);
+}
+
+.modal__button {
+  width: 100%;
+  text-align: center;
+}
+
+.button__element {
+  padding: 8px 16px;
+  color: var(--btn-action);
+  border: 1px solid var(--btn-action);
+  background-color: transparent;
+  border-radius: 4px;
+  width: 40%;
+  margin: 15px 0;
+}
+
+.card__title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  p {
+    margin-left: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+}

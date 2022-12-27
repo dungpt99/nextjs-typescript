@@ -1,0 +1,51 @@
+@import "normalize.css";
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;200;300;400;500;600;800&display=swap");
+
+:root {
+  --primary: #da2222;
+  --white: #fff;
+  --text-color: #2d4650;
+  --input-color: #bbbbc1;
+  --disabled: #dde2e7;
+  --error: #da2222;
+  --blue: #2e5479;
+  --border-color: #afc5da;
+  --btn-add: #2281da;
+  --btn-action: #2281da;
+  --btn-deleteStatus: #97a6af;
+  --btn-border-color: #6c7680;
+  --background-color: #f9f9f9;
+  --icon-search: #8a8a8e;
+
+  --default-layout-header-height: 60px;
+  --default-layout-with-content: 1150px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  text-rendering: optimizeSpeed;
+}
+
+a[href] {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.ant-table-wrapper .ant-table-thead > tr > th {
+  background-color: var(--blue);
+  color: var(--white);
+  font-weight: 400;
+  font-size: 18px;
+}
