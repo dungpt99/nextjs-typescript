@@ -11,6 +11,9 @@
   --blue: #2e5479;
   --border-color: #afc5da;
   --btn-add: #2281da;
+  --btn-action: #2281da;
+  --btn-deleteStatus: #97a6af;
+  --btn-border-color: #6c7680;
   --background-color: #f9f9f9;
   --icon-search: #8a8a8e;
 
@@ -43,6 +46,6 @@ a[href] {
 .ant-table-wrapper .ant-table-thead > tr > th {
   background-color: var(--blue);
   color: var(--white);
-  font-weight: 500;
+  font-weight: 400;
   font-size: 18px;
 }

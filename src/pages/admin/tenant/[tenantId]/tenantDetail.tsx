@@ -66,7 +66,7 @@ export default function TenantDetail() {
                 type={element.type}
                 label={element.label}
                 disabled
-                value={element.value}
+                defaultValue={element.value}
                 display={"column"}
               />
             </Col>
@@ -101,7 +101,7 @@ export default function TenantDetail() {
                     <Input
                       type={element.type}
                       label={element.label}
-                      value={element.value}
+                      defaultValue={element.value}
                       onChangeValue={onChange}
                       display={"row"}
                     />

@@ -1,6 +1,6 @@
 .wrapper {
   height: 100vh;
-  background-color: #9a9a9a;
+  background-color: #f7f7f7;
   overflow: hidden;
   position: relative;
 }
@@ -79,6 +79,8 @@
       width: 100%;
       height: 56px;
       border-radius: 8px;
+      background-color: #2281da;
+      color: var(--white);
     }
   }
 

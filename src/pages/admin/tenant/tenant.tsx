@@ -7,7 +7,7 @@ import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./tenant.module.scss";
 import { DefaultLayout } from "../../../layouts";
-import TableComponent from "../../../components/Table";
+import Table from "../../../components/Table";
 import Text from "../../../components/Text";
 import Input from "../../../components/Input";
 import Button from "../../../components/Button";
@@ -156,9 +156,9 @@ export default function Tenant() {
         </div>
       </div>
       <div className={cx("table")}>
-        <TableComponent
+        <Table
           columns={columnsTenant}
-          data={data}
+          dataSource={data}
           tableParams={tableParams}
           handleTableChange={handleTableChange}
           loading={loading}

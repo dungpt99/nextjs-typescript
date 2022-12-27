@@ -27,7 +27,6 @@ class Axios {
 
   // Method get
   get(path: string, params: object) {
-    console.log(this.headers);
     return this.api({
       method: "get",
       url: path,
@@ -57,11 +56,10 @@ class Axios {
   }
 
   // Method delete
-  delete(path: string, payload: string) {
+  delete(path: string, id: string) {
     return this.api.request({
       method: "DELETE",
-      url: path,
-      data: payload,
+      url: path + id,
       headers: this.headers,
     });
   }

@@ -1,21 +1,23 @@
 .wrapper {
   border-right: 1px solid gray;
   width: 280px;
-  height: 100vh;
+  height: 92.5vh;
   padding: 24px 0;
 }
 
 .item {
   display: flex;
   align-items: center;
-  padding: 10px 20px;
+  padding: 15px 0 15px 30px;
   cursor: pointer;
+  font-weight: 400;
+  font-size: 18px;
 
   &__icon {
   }
 
   &__text {
-    margin-left: 20px;
+    margin-left: 10px;
   }
 
   &:hover {

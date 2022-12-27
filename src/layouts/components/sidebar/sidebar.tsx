@@ -1,28 +1,28 @@
 import React from "react";
 import classNames from "classnames/bind";
 import styles from "./sidebar.module.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faWallet, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 
 import Text from "../../../components/Text";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Image from "next/image";
+import Tenant from "../../../assets/images/tenant.svg";
+import User from "../../../assets/images/user.svg";
+import Wallet from "../../../assets/images/wallet.svg";
 
 const cx = classNames.bind(styles);
 
 const tab = [
-  { key: "Tenant Management", icon: faLayerGroup, link: "tenant" },
-  { key: "User Management", icon: faWallet, link: "wallet" },
-  { key: "Admin Management", icon: faUser, link: "admin" },
+  { key: "Tenant Management", icon: Tenant, link: "tenant" },
+  { key: "User Management", icon: Wallet, link: "wallet" },
+  { key: "Admin Management", icon: User, link: "admin" },
 ];
 
 export default function Sidebar() {
   const router = useRouter();
 
-  const handleClick = (e: any) => {
-    console.log(router);
-  };
+  const handleClick = (e: any) => {};
   return (
     <div className={cx("wrapper")}>
       <ul>
@@ -30,7 +30,7 @@ export default function Sidebar() {
           <li key={index}>
             <Link className={cx("item")} href={element.link} onClick={handleClick}>
               <div className={cx("item__icon")}>
-                <FontAwesomeIcon icon={element.icon} size={"2x"} />
+                <Image src={element.icon} alt="Logo" width={16} height={18} />
               </div>
               <div className={cx("item__text")}>
                 <Text>{element.key}</Text>
