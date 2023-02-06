@@ -14,6 +14,7 @@ import banner2 from "../../assets/images/banner2.svg";
 import { useAppDispatch, useAppSelector } from "../../config/store";
 import { authenticate } from "../../config/reducers/authentication/authentication";
 import { TypeToast } from "../../common/enum";
+import { login } from "../../services/user";
 
 const cx = classNames.bind(styles);
 
@@ -33,7 +34,7 @@ export default function Login(props: ILoginProps) {
   }
 
   const handleLogin = async () => {
-    dispatch(authenticate(privateKey));
+    await login();
   };
 
   if (isAuthenticated) {
@@ -95,11 +96,7 @@ export default function Login(props: ILoginProps) {
           )}
         </div>
         <div className={cx("content__button")}>
-          <Button
-            handleOnClick={handleLogin}
-            disabled={disabled}
-            className={cx("content__button--element")}
-          >
+          <Button handleOnClick={handleLogin} className={cx("content__button--element")}>
             Authorize
           </Button>
         </div>
