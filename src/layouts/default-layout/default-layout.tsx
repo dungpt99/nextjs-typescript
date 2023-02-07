@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 
 import Header from "../components/header";
 import Sidebar from "../components/sidebar/sidebar";
+import Auth from "../../components/common/auth";
 
 const cx = classNames.bind(styles);
 export interface IDefaultLayoutProps {
@@ -13,13 +14,15 @@ export interface IDefaultLayoutProps {
 
 export default function DefaultLayout(props: IDefaultLayoutProps) {
   return (
-    <div className={cx("wrapper")}>
-      <Header />
-      <div className={cx("body")}>
-        <Sidebar />
-        <div className={cx("content")}>{props.children}</div>
+    <Auth>
+      <div className={cx("wrapper")}>
+        <Header />
+        <div className={cx("body")}>
+          <Sidebar />
+          <div className={cx("content")}>{props.children}</div>
+        </div>
+        <ToastContainer />
       </div>
-      <ToastContainer />
-    </div>
+    </Auth>
   );
 }

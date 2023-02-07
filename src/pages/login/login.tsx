@@ -29,7 +29,7 @@ export default function Login(props: ILoginProps) {
   const loginError = useAppSelector((state) => state.authentication.loginError);
   const loginSuccess = useAppSelector((state) => state.authentication.loginSuccess);
   const { login, logout, profile } = useAuth({
-    revalidateOnMount: false,
+    // revalidateOnMount: false,
   });
 
   if (loginSuccess) {
@@ -39,18 +39,17 @@ export default function Login(props: ILoginProps) {
   const handleLogin = async () => {
     try {
       await login();
-      console.log("redirect login");
+      router.push("admin/admin");
     } catch (error) {
       console.log("fail to login", error);
     }
   };
   const handleGetProfile = async () => {
-    await login();
+    // await login();
   };
   const handleLogout = async () => {
     try {
       await logout();
-      console.log("redirect login");
     } catch (error) {
       console.log("fail to login", error);
     }
