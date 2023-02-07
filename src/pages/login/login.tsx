@@ -14,7 +14,7 @@ import banner2 from "../../assets/images/banner2.svg";
 import { useAppDispatch, useAppSelector } from "../../config/store";
 import { authenticate } from "../../config/reducers/authentication/authentication";
 import { TypeToast } from "../../common/enum";
-import { login } from "../../services/user";
+import { useAuth } from "../../hooks";
 
 const cx = classNames.bind(styles);
 
@@ -28,13 +28,32 @@ export default function Login(props: ILoginProps) {
   const isAuthenticated = useAppSelector((state) => state.authentication.isAuthenticated);
   const loginError = useAppSelector((state) => state.authentication.loginError);
   const loginSuccess = useAppSelector((state) => state.authentication.loginSuccess);
+  const { login, logout, profile } = useAuth({
+    revalidateOnMount: false,
+  });
 
   if (loginSuccess) {
     toastNotify(TypeToast.SUCCESS, "Login success");
   }
 
   const handleLogin = async () => {
+    try {
+      await login();
+      console.log("redirect login");
+    } catch (error) {
+      console.log("fail to login", error);
+    }
+  };
+  const handleGetProfile = async () => {
     await login();
+  };
+  const handleLogout = async () => {
+    try {
+      await logout();
+      console.log("redirect login");
+    } catch (error) {
+      console.log("fail to login", error);
+    }
   };
 
   if (isAuthenticated) {
@@ -71,35 +90,22 @@ export default function Login(props: ILoginProps) {
             className={cx("content__icon--element2")}
           />
         </div>
-        <div className={cx("content__title")}>
-          <Text uppercase className={cx("content__title--size")}>
-            Sign in with your wallet
-          </Text>
-        </div>
-        <div className={cx("content__input")}>
-          <Input
-            type={"password"}
-            onChangeValue={changeValueLogin}
-            label={"Private key"}
-            display={"column"}
-            error={loginError}
-            placeholder={"Input your Private Key here"}
-            classlabel={cx("input__label")}
-            classinput={cx("content__input--element")}
-          />
-        </div>
-        <div className={cx("content__message")}>
-          {loginError && (
-            <Text warning className={cx("content__message--element")}>
-              Private key is not valid! Authorization failed!
-            </Text>
-          )}
-        </div>
         <div className={cx("content__button")}>
           <Button handleOnClick={handleLogin} className={cx("content__button--element")}>
-            Authorize
+            Login
           </Button>
         </div>
+        <div className={cx("content__button")}>
+          <Button handleOnClick={handleGetProfile} className={cx("content__button--element")}>
+            Profile
+          </Button>
+        </div>
+        <div className={cx("content__button")}>
+          <Button handleOnClick={handleLogout} className={cx("content__button--element")}>
+            Logout
+          </Button>
+        </div>
+        <div>Profile: {JSON.stringify(profile || {}, null, 4)}</div>
       </div>
     </div>
   );
