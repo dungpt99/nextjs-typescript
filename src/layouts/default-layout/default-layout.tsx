@@ -3,7 +3,7 @@ import classNames from "classnames/bind";
 import styles from "./default-layout.module.scss";
 import { ToastContainer } from "react-toastify";
 
-import Header from "../components/header";
+import { Header } from "../components/header";
 import Sidebar from "../components/sidebar/sidebar";
 import Auth from "../../components/common/auth";
 
