@@ -12,23 +12,8 @@ export default function MainLayout(props: IMainLayoutProps) {
     <Stack minHeight="100vh">
       <Header />
       <Box component={"main"} flexGrow="1">
-        <Container maxWidth="sm" sx={{ bgcolor: "primary.main" }}>
-          SM container
-        </Container>
-        <Container maxWidth="md" sx={{ bgcolor: "primary.main" }}>
-          MD container
-        </Container>
-        <Container sx={{ bgcolor: "primary.main" }}></Container>
-        <Link href={"/"} legacyBehavior>
-          <a>Home</a>
-        </Link>
-        <Link href={"/blog"} legacyBehavior>
-          <a>Blog</a>
-        </Link>
-        <Link href={"/works"} legacyBehavior>
-          <a>Works</a>
-        </Link>
-        {props.children}
+        <Container maxWidth="sm" sx={{ bgcolor: "primary.main" }}></Container>
+        <Container maxWidth="md">{props.children}</Container>
       </Box>
       <Footer />
     </Stack>
