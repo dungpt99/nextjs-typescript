@@ -12,7 +12,7 @@ export default function MainLayout(props: IMainLayoutProps) {
     <Stack minHeight="100vh">
       <Header />
       <Box component={"main"} flexGrow="1">
-        <Container maxWidth="sm" sx={{ bgcolor: "primary.main" }}></Container>
+        <Container maxWidth="sm" sx={{ bgcolor: "red" }}></Container>
         <Container maxWidth="md">{props.children}</Container>
       </Box>
       <Footer />
