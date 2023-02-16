@@ -11,7 +11,7 @@ import axiosClient from "../../api-client/axios-client";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider, EmotionCache } from "@emotion/react";
-import { theme, createEmotionCache } from "@/utils/index";
+import { theme, createEmotionCache } from "@/src/utils";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: React.ReactElement) => React.ReactNode;

@@ -1,12 +1,13 @@
 import { Box } from "@mui/material";
 import MainLayout from "../layouts/main";
-import { HeroSection, RecentPost } from "../components/home";
+import { FeaturedWork, HeroSection, RecentPost } from "../components/home";
 
 export default function Home() {
   return (
     <Box>
       <HeroSection />
       <RecentPost />
+      <FeaturedWork />
     </Box>
   );
 }

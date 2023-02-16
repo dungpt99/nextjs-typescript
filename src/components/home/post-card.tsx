@@ -1,4 +1,4 @@
-import { Card, CardContent, Typography, Divider } from "@mui/material";
+import { Card, CardContent, Typography, Divider, Stack } from "@mui/material";
 import * as React from "react";
 import { Post } from "../../models";
 
@@ -14,13 +14,17 @@ export function PostCard({ post }: IPostCardProps) {
         <Typography variant={"h3"} fontWeight={"bold"}>
           {post.title}
         </Typography>
-        <Typography variant={"body1"} my={2} sx={{ display: "flex" }}>
-          {post.publishedDate}
+        <Stack direction={"row"} my={2}>
+          <Typography variant={"body1"} sx={{ display: "flex" }}>
+            {post.publishedDate}
+          </Typography>
 
           <Divider orientation={"vertical"} sx={{ mx: 2 }} flexItem />
 
-          {post.tagList.join(", ")}
-        </Typography>
+          <Typography variant={"body1"} sx={{ display: "flex" }}>
+            {post.tagList.join(", ")}
+          </Typography>
+        </Stack>
         <Typography variant={"body2"}>{post.description}</Typography>
       </CardContent>
     </Card>
