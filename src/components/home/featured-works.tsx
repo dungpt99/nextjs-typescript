@@ -47,7 +47,9 @@ export function FeaturedWork(props: IFeaturedWorkProps) {
   return (
     <Box component={"section"} pt={2} pb={4}>
       <Container>
-        <Typography variant={"h5"}>Featured works</Typography>
+        <Typography variant={"h5"} mb={3}>
+          Featured works
+        </Typography>
 
         <WorkList workList={workList} />
       </Container>
