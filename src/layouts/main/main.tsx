@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Container, Stack } from "@mui/material";
 import { Footer, Header } from "../components";
-import Link from "next/link";
 
 export interface IMainLayoutProps {
   children: any;
