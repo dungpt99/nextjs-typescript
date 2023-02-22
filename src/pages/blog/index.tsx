@@ -20,7 +20,7 @@ export default function BlogPage({ posts }: IBlogPageProps) {
         <Box component={"ul"} sx={{ listStyleType: "none", p: 0 }}>
           {posts.map((post) => (
             <li key={post.id}>
-              <Link href={`blog/${post.slug}`} legacyBehavior>
+              <Link href={`blog/${post.slug}`} legacyBehavior passHref>
                 <a>
                   <PostItem post={post} />
                 </a>
