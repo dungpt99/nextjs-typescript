@@ -15,6 +15,7 @@ import remarkToc from "remark-toc";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import remarkPrism from "remark-prism";
+import { Seo } from "@/src/components/common";
 
 export interface IBlogPageDetailProps {
   post: Post;
@@ -25,6 +26,15 @@ export default function BlogPageDetail({ post }: IBlogPageDetailProps) {
 
   return (
     <Box>
+      <Seo
+        data={{
+          title: post.title,
+          description: post.description,
+          url: `${process.env.HOST_URL}/blog/${post.slug}` || "",
+          thumbnail: post.thumbnailUrl || "",
+        }}
+      />
+
       <Container>
         <h1>Blog detail</h1>
         <p>{post.title}</p>

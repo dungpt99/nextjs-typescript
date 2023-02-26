@@ -15,6 +15,7 @@ export interface Post {
   slug: string;
   author: Author | null;
 
+  thumbnailUrl?: string;
   mdContent?: string;
   htmlContent?: string;
 }

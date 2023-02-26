@@ -16,7 +16,7 @@ export function Seo({ data }: Seo) {
   const { title, description, url, thumbnail } = data;
   return (
     <Head>
-      <title>NextJs</title>
+      <title>{title}</title>
       <meta name="title" content={title} />
       <meta name="description" content={description} />
 
