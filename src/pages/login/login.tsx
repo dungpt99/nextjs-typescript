@@ -15,6 +15,7 @@ import { useAppDispatch, useAppSelector } from "../../config/store";
 import { authenticate } from "../../config/reducers/authentication/authentication";
 import { TypeToast } from "../../common/enum";
 import { useAuth } from "../../hooks";
+import { LoginForm } from "@/src/components/auth";
 
 const cx = classNames.bind(styles);
 
@@ -73,6 +74,7 @@ export default function Login(props: ILoginProps) {
           </Text>
           <Image src={logo} height={50} width={50} alt="Logo" />
         </div>
+
         <div className={cx("content__icon")}>
           <Image
             src={banner1}
@@ -105,6 +107,7 @@ export default function Login(props: ILoginProps) {
           </Button>
         </div>
         <div>Profile: {JSON.stringify(profile || {}, null, 4)}</div>
+        <LoginForm />
       </div>
     </div>
   );
