@@ -1,14 +1,23 @@
-import { Box } from "@mui/material";
+import { Box, TextField, TextFieldProps } from "@mui/material";
 import React from "react";
 import { useController, Control } from "react-hook-form";
 
-export interface IInputFieldProps {
+export type IInputFieldProps = TextFieldProps & {
   name: string;
   label?: string;
   control: Control<any>;
-}
+};
 
-export function InputField({ name, label, control }: IInputFieldProps) {
+export function InputField({
+  name,
+  control,
+  type,
+  value: externalValue,
+  onChange: externalOnChange,
+  onBlur: externalOnBlur,
+  ref: externalRef,
+  ...rest
+}: IInputFieldProps) {
   const {
     field: { onChange, onBlur, value, ref },
     fieldState: { error },
@@ -16,9 +25,20 @@ export function InputField({ name, label, control }: IInputFieldProps) {
     name,
     control,
   });
+
   return (
-    <Box onClick={() => onChange(value + 1)} ref={ref}>
-      {name}:{value}
-    </Box>
+    <TextField
+      {...rest}
+      type={type}
+      fullWidth
+      size={"small"}
+      name={name}
+      value={value}
+      onChange={onChange}
+      onBlur={onBlur}
+      inputRef={ref}
+      error={!!error}
+      helperText={error?.message}
+    />
   );
 }
